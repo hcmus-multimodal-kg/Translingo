@@ -1,0 +1,24 @@
+from fastapi import FastAPI
+from pydantic import BaseModel
+import torch
+from transformers import T5Tokenizer, T5ForConditionalGeneration
+
+app = FastAPI()
+
+model_dir ="./t5_vi_translation"
+
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+tokenizer = T5Tokenizer.from_pretrained(model_dir)
+model = T5ForConditionalGeneration.from_pretrained(model_dir).to(device)
+model.eval()
+
+class TranslationRequest(BaseModel):
+    text: str
+
+@app.post("/translate")
+def translate(req: TranslationRequest):
+    input_text = "translate English to Vietnamese: " + req.text
+    input_ids = tokenizer.encode(input_text, return_tensors="pt").to(device)
+    output_ids = model.generate(input_ids=input_ids, max_length=128)
+    translation = tokenizer.decode(output_ids[0], skip_special_tokens=True)
+    return {"translation": translation}

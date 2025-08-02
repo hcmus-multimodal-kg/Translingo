@@ -1,0 +1,6 @@
+
+# pycache + model
+Backend/t5_vi_translation/
+Backend/__pycache__/
+#data
+PhoMT/
