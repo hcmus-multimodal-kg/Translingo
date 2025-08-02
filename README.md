@@ -6,7 +6,7 @@ AI-powered English to Vietnamese translation machine built with FastAPI backend 
 
 - **Real-time Translation**: Instant English to Vietnamese translation
 - **Modern UI**: Beautiful, responsive interface with glassmorphism design
-- **AI-Powered**: Uses T5 Transformer model for high-quality translations
+- **AI-Powered**: Uses fine-tuned T5 Transformer model trained on PhoMT dataset for high-quality translations
 - **User-Friendly**: Copy-to-clipboard, keyboard shortcuts, and loading states
 - **RESTful API**: FastAPI backend with clean API endpoints
 
@@ -33,7 +33,8 @@ translation_machine/
 - **FastAPI** - Modern Python web framework
 - **PyTorch** - Deep learning framework
 - **Transformers** - Hugging Face transformers library
-- **T5 Model** - Text-to-Text Transfer Transformer
+- **T5 Model** - Fine-tuned T5 Transformer on PhoMT dataset
+- **PhoMT Dataset** - English-Vietnamese parallel corpus for training
 
 ### Frontend
 - **React 18** - JavaScript library for building user interfaces
@@ -60,10 +61,10 @@ translation_machine/
    pip install -r requirements.txt
    ```
 
-3. **Download the T5 model:**
+3. **Download the fine-tuned T5 model:**
    ```bash
-   # You need to download the trained T5 model files
-   # and place them in Backend/t5_vi_translation/
+   # The model is fine-tuned on PhoMT dataset with BLEU score of 39.34
+   # Download the trained model files and place them in Backend/t5_vi_translation/
    ```
 
 4. **Start the backend server:**
@@ -162,7 +163,8 @@ Frontend/
 ## 🔧 Development
 
 ### Backend Development
-- The FastAPI server uses T5 model for translation
+- The FastAPI server uses fine-tuned T5 model trained on PhoMT dataset
+- Model achieves BLEU score of 39.34 on test set
 - Model files are stored in `Backend/t5_vi_translation/`
 - API documentation available at `http://localhost:8000/docs`
 
@@ -205,5 +207,6 @@ This project is licensed under the MIT License.
 
 - Hugging Face Transformers library
 - T5 model architecture
+- PhoMT dataset for training data
 - FastAPI framework
 - React and Tailwind CSS communities 
