@@ -4,3 +4,7 @@ Backend/t5_vi_translation/
 Backend/__pycache__/
 #data
 PhoMT/
+
+
+# React Frontend
+Frontend/node_modules/
